@@ -85,9 +85,9 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &4833812951110259315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,7 +95,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2229464473304222454}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
@@ -130,11 +130,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1da7902f63153a41b50ee72a9507cde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  oriantation: {fileID: 0}
-  player: {fileID: 0}
-  PlayerObj: {fileID: 0}
-  myRb: {fileID: 0}
-  rotationspeed: 0
+  oriantation: {fileID: 8626612554321585764}
+  player: {fileID: 6594703706725817434}
+  PlayerObj: {fileID: 4499054166204634777}
+  myRb: {fileID: 3612193277490853495}
+  rotationspeed: 7
 --- !u!114 &5629456031466738324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,13 +147,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 806ea7819177fe147bdae22fcad0ebef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0
-  groundDrag: 0
-  playerHeigt: 0
+  moveSpeed: 1
+  groundDrag: 1
+  playerHeigt: 1
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 0
-  oriantation: {fileID: 0}
+    m_Bits: 64
+  oriantation: {fileID: 8626612554321585764}
 --- !u!1 &5585562654486893239
 GameObject:
   m_ObjectHideFlags: 0
