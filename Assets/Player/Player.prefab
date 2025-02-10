@@ -130,9 +130,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1da7902f63153a41b50ee72a9507cde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  oriantation: {fileID: 8626612554321585764}
+  orientation: {fileID: 8626612554321585764}
   player: {fileID: 6594703706725817434}
   PlayerObj: {fileID: 4499054166204634777}
+  cameraTransform: {fileID: 0}
   myRb: {fileID: 3612193277490853495}
   rotationspeed: 7
 --- !u!114 &5629456031466738324
@@ -147,12 +148,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 806ea7819177fe147bdae22fcad0ebef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
-  groundDrag: 1
-  playerHeigt: 1
+  moveSpeed: 7
+  groundDrag: 5
+  jumpForce: 12
+  jumpCooldown: 0.25
+  airMultiplier: 0.4
+  readyToJump: 0
+  jumpKey: 32
+  playerHeight: 2
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
+  grounded: 0
   oriantation: {fileID: 8626612554321585764}
 --- !u!1 &5585562654486893239
 GameObject:

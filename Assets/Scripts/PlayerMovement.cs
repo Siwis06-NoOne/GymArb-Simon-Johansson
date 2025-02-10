@@ -5,8 +5,13 @@ using Rigidbody = UnityEngine.Rigidbody;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
-    [SerializeField] float moveSpeed;
+    private float moveSpeed;
+    [SerializeField] float walkSpeed;
+    [SerializeField] float sprintSpeed;
+
     [SerializeField] float groundDrag;
+
+    [Header("Jumping")]
     [SerializeField] float jumpForce;
     [SerializeField] float jumpCooldown;
     [SerializeField] float airMultiplier;
@@ -15,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Keybinds")]
     [SerializeField] KeyCode jumpKey = KeyCode.Space;
+    [SerializeField] KeyCode sprintKey = KeyCode.LeftShift;
 
     [Header("Ground Chek")]
     [SerializeField] float playerHeight;
@@ -29,6 +35,15 @@ public class PlayerMovement : MonoBehaviour
     Vector3 moveDirection;
 
     Rigidbody myRb;
+
+    public MovementState state;
+
+    public enum MovementState
+    {
+        walking,
+        sprinting,
+        air,
+    }
 
     private void Start()
     {
@@ -67,6 +82,7 @@ public class PlayerMovement : MonoBehaviour
 
         MyInput();
         SpeedControl();
+        StateHandeler();
     }
     private void FixedUpdate()
     {
@@ -86,6 +102,27 @@ public class PlayerMovement : MonoBehaviour
             Jump();
             Invoke(nameof(ResetJump), jumpCooldown);
         } 
+    }
+
+    private void StateHandeler()
+    {
+        // Mode - sprinting
+        if (grounded && Input.GetKey(sprintKey))
+        {
+            state = MovementState.sprinting;
+            moveSpeed = sprintSpeed;
+        }
+        // Mode - wlaking
+        else if (grounded)
+        {
+            state |= MovementState.walking;
+            moveSpeed = walkSpeed;
+        }
+        // Mode - air
+        else
+        {
+            state = MovementState.air;
+        }
     }
 
     private void MovePlayer()
