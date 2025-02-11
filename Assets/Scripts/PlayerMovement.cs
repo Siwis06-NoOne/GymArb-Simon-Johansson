@@ -169,7 +169,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (myRb.linearVelocity.y > 0)
             {
-                myRb.AddForce(Vector3.down * 80f, ForceMode.Force);
+                myRb.AddForce(Vector3.down * 8f, ForceMode.Force);
             }
         }
 
