@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] float walkSpeed;
     [SerializeField] float sprintSpeed;
+    [SerializeField] float wallrunSpeed;
 
     [SerializeField] float groundDrag;
 
@@ -54,9 +55,12 @@ public class PlayerMovement : MonoBehaviour
     {
         walking,
         sprinting,
+        wallrunning,
         crouching,
         air,
     }
+
+    public bool wallrunning;
 
     private void Start()
     {
@@ -132,6 +136,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void StateHandeler()
     {
+        // Mode - wallrunning
+        if (wallrunning)
+        {
+            state = MovementState.wallrunning;
+            moveSpeed = wallrunSpeed;
+        }
+
         // Mode - crouching
         if (Input.GetKey(crouchKey) && grounded)
         {
