@@ -18,4 +18,6 @@ public class SceneControler : MonoBehaviour
     {
         SceneManager.LoadScene(scene);
     } 
+
+
 }
