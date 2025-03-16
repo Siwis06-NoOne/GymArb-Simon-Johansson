@@ -8,22 +8,28 @@ public class WallRun : MonoBehaviour
     [SerializeField] LayerMask whatIsGround;
     [SerializeField] float wallRunForce;
     [SerializeField] float maxWallRunTime;
-    private float wallRunTimeer;
+    [SerializeField] float wallClimbSpeed;
+    private float wallRunTimer;
+    public bool isWallRunning;
 
     [Header("Input")]
     private float horizontalInput;
     private float verticalInput;
+    [SerializeField] KeyCode upwardsRunKey = KeyCode.LeftShift;
+    [SerializeField] KeyCode downwardsRunKey = KeyCode.LeftControl;
+    private bool upwardsRunning;
+    private bool downwardsRunning;
 
     [Header("Detection")]
     [SerializeField] float wallCheckDistance;
-    [SerializeField] float minJumpHeigt;
+    [SerializeField] float minJumpHeight;
     private RaycastHit leftWallHit;
     private RaycastHit rightWallHit;
     private bool wallLeft;
     private bool wallRight;
 
     [Header("Refrences")]
-    [SerializeField] Transform oriantation;
+    [SerializeField] Transform orientation;
     private PlayerMovement pm;
     [SerializeField] Rigidbody myRb;
 
@@ -31,6 +37,7 @@ public class WallRun : MonoBehaviour
     {
         myRb = GetComponent<Rigidbody>();
         pm = GetComponent<PlayerMovement>();
+        wallRunTimer = maxWallRunTime;
     }
 
     private void Update()
@@ -49,13 +56,13 @@ public class WallRun : MonoBehaviour
 
     private void CheckForWall()
     {
-        wallRight = Physics.Raycast(transform.position, oriantation.right, out rightWallHit, wallCheckDistance, whatIsWall);
-        wallLeft = Physics.Raycast(transform.position, -oriantation.right, out leftWallHit, wallCheckDistance, whatIsWall);
+        wallRight = Physics.Raycast(transform.position, orientation.right, out rightWallHit, wallCheckDistance, whatIsWall);
+        wallLeft = Physics.Raycast(transform.position, -orientation.right, out leftWallHit, wallCheckDistance, whatIsWall);
     }
 
     private bool AboveGround()
     {
-        return !Physics.Raycast(transform.position, Vector3.down, minJumpHeigt, whatIsGround);
+        return !Physics.Raycast(transform.position, Vector3.down, minJumpHeight, whatIsGround);
     }
 
     private void StateMachine()
@@ -64,16 +71,19 @@ public class WallRun : MonoBehaviour
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
+        upwardsRunning = Input.GetKey(upwardsRunKey);
+        downwardsRunning = Input.GetKey(downwardsRunKey);
+
         // State 1 - Wallrunning
         if ((wallLeft || wallRight) && verticalInput > 0 && AboveGround())
         { 
-            if (pm.wallrunning)
+            if (!pm.wallrunning)
             {
                 StartWallrun();
             }
         }
         // State 3 - None
-        if (pm.wallrunning)
+        if ((pm.wallrunning && wallRunTimer <= 1f) || (pm.wallrunning && !wallRight && !wallLeft))
         {
             EndWallRun();
         }
@@ -82,6 +92,7 @@ public class WallRun : MonoBehaviour
     private void StartWallrun()
     {
         pm.wallrunning = true;
+        Debug.Log("WallRunnStarted");
     }
 
     private void WallRunningMovement()
@@ -93,12 +104,37 @@ public class WallRun : MonoBehaviour
 
         Vector3 wallForward = Vector3.Cross(wallNormal, transform.up);
 
+        if ((orientation.forward - wallForward).magnitude > (orientation.forward - -wallForward).magnitude)
+        {
+            wallForward = -wallForward;
+        }
+
         // force forward
         myRb.AddForce(wallForward * wallRunForce, ForceMode.Force);
+
+        // up and down force
+        if (upwardsRunning)
+        {
+            myRb.linearVelocity = new Vector3(myRb.linearVelocity.x, wallClimbSpeed, myRb.linearVelocity.z);
+        }
+        if (downwardsRunning)
+        {
+            myRb.linearVelocity = new Vector3(myRb.linearVelocity.x, -wallClimbSpeed, myRb.linearVelocity.z);
+        }
+
+        // push to wall force
+        if (!(wallLeft && horizontalInput > 0) && !(wallRight && horizontalInput > 0))
+        {
+            myRb.AddForce(-wallNormal * 100, ForceMode.Force);
+        }
+
+        wallRunTimer -= Time.deltaTime;
     }
 
     private void EndWallRun()
     {
+        Debug.Log("wallRunnEnd");
         pm.wallrunning = false;
+        wallRunTimer = maxWallRunTime;
     }
 }
