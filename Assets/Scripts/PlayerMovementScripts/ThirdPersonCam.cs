@@ -17,8 +17,14 @@ public class ThirdPersonCam : MonoBehaviour
     [SerializeField] int amountOfKeys;
     [SerializeField] int currentKeys;
     [SerializeField] bool hasAllKeys;
+    
+    private string currentCeneName;
 
     [SerializeField] float rotationspeed;
+    private void Awake()
+    {
+        currentCeneName = SceneManager.GetActiveScene().name;
+    }
 
     private void Start()
     {
@@ -65,6 +71,9 @@ public class ThirdPersonCam : MonoBehaviour
         {
             SceneManager.LoadScene(2);
         }
+
+        if (collision.gameObject.tag == "Death")
+           SceneManager.LoadScene(currentCeneName);
     }
 
 }

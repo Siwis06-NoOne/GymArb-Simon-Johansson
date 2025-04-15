@@ -6,6 +6,7 @@ using TMPro;
 
 public class SceneControler : MonoBehaviour
 {
+
     public static SceneControler Instance;
 
     public void QuitGame()
@@ -17,7 +18,5 @@ public class SceneControler : MonoBehaviour
     public void ChangeScene(int scene)
     {
         SceneManager.LoadScene(scene);
-    } 
-
-
+    }
 }
