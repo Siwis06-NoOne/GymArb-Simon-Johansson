@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using UnityEditor.SearchService;
 
 public class ThirdPersonCam : MonoBehaviour
 {
@@ -19,20 +20,23 @@ public class ThirdPersonCam : MonoBehaviour
     [SerializeField] bool hasAllKeys;
     
     private string currentCeneName;
+    [SerializeField] string nextScene;
+    
 
     [SerializeField] float rotationspeed;
     private void Awake()
     {
         currentCeneName = SceneManager.GetActiveScene().name;
+       SceneManager.sceneCount.ToString();
     }
 
     private void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
         currentKeys = 0;
         hasAllKeys = false;
     }
+
+
 
     private void Update()
     {
@@ -69,7 +73,7 @@ public class ThirdPersonCam : MonoBehaviour
 
         if (collision.gameObject.tag == "Door" && hasAllKeys == true)
         {
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(nextScene);
         }
 
         if (collision.gameObject.tag == "Death")
