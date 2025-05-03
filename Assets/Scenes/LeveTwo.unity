@@ -764,6 +764,50 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4497011438508190, guid: 7446a392a730ac14d9cc70d21cf7ace0, type: 3}
   m_PrefabInstance: {fileID: 80681151}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &124911944
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 124911946}
+  - component: {fileID: 124911945}
+  m_Layer: 0
+  m_Name: SceneControlThing
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &124911945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124911944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81b05db4a19bf68418b519de27cd8476, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &124911946
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124911944}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.173938, y: 31.102966, z: 15.514763}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &130901585
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13112,9 +13156,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1440678791565320445, guid: 96771fc5606b3ed44838dda0a54eb913, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 124911945}
+    - target: {fileID: 1440678791565320445, guid: 96771fc5606b3ed44838dda0a54eb913, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeScene
+      objectReference: {fileID: 0}
     - target: {fileID: 2229464473304222454, guid: 96771fc5606b3ed44838dda0a54eb913, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2590315283521829944, guid: 96771fc5606b3ed44838dda0a54eb913, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 124911945}
+    - target: {fileID: 2590315283521829944, guid: 96771fc5606b3ed44838dda0a54eb913, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: QuitGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 4009761985996105304, guid: 96771fc5606b3ed44838dda0a54eb913, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5789107649904701994, guid: 96771fc5606b3ed44838dda0a54eb913, type: 3}
       propertyPath: nextScene
@@ -13188,3 +13252,4 @@ SceneRoots:
   - {fileID: 55453231}
   - {fileID: 677019529}
   - {fileID: 1071143507}
+  - {fileID: 124911946}

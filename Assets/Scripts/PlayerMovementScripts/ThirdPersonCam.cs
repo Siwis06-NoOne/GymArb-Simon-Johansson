@@ -20,7 +20,7 @@ public class ThirdPersonCam : MonoBehaviour
     [SerializeField] bool hasAllKeys;
     
     private string currentCeneName;
-    [SerializeField] string nextScene;
+    [SerializeField] int nextScene;
     
 
     [SerializeField] float rotationspeed;
