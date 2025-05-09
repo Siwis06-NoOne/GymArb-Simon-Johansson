@@ -1,8 +1,5 @@
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.SceneManagement;
-using UnityEditor.SearchService;
 
 public class ThirdPersonCam : MonoBehaviour
 {

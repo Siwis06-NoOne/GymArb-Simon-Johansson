@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro;
 
 public class SceneControler : MonoBehaviour
 {
@@ -19,4 +16,5 @@ public class SceneControler : MonoBehaviour
     {
         SceneManager.LoadScene(scene);
     }
+
 }
